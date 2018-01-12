@@ -31,3 +31,14 @@ FOREIGN KEY(movie_id) REFERENCES bms_movie(m_id),
 FOREIGN KEY(hall_id) REFERENCES bms_hall(h_id),
 FOREIGN KEY(customer_id) REFERENCES bms_customer(c_id)
 )
+
+INSERT INTO bms_customer values(10001, 'Yash', 999999999, 'India', 'yash@gmail.com', 18)
+SELECT * FROM bms_customer
+
+INSERT INTO bms_hall VALUES(2001, 'Delhi', 110034, 100)
+SELECT * FROM bms_hall
+
+INSERT INTO bms_movie VALUES(1, 'Lord of the Rings', 'Best movie ever', 5)
+SELECT * FROM bms_movie
+
+INSERT INTO bms_movie(b_id, movie_id, hall_id, customer_id, seats) VALUES(1, 1, 2001, 10001, 100)
