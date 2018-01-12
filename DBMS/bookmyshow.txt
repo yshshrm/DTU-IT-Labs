@@ -1,0 +1,33 @@
+CREATE TABLE bms_customer (
+c_id INT PRIMARY KEY, 
+name CHAR(30) NOT NULL, 
+phone INT UNIQUE, 
+country VARCHAR(20) DEFAULT 'INDIA', 
+email VARCHAR(20), 
+age INT CHECK(age > 12)
+)
+
+CREATE TABLE bms_hall(
+h_id INT PRIMARY KEY, 
+location VARCHAR(30), 
+pincode INT, 
+seats INT
+)
+
+CREATE TABLE bms_movie(
+m_id INT PRIMARY KEY, 
+movie VARCHAR(30), 
+synopsis VARCHAR(255), 
+rating INT CHECK(rating <= 5)
+)
+
+CREATE TABLE bms_booking(
+b_id INT PRIMARY KEY, 
+movie_id INT, 
+hall_id INT, 
+customer_id INT, 
+seats INT, 
+FOREIGN KEY(movie_id) REFERENCES bms_movie(m_id),
+FOREIGN KEY(hall_id) REFERENCES bms_hall(h_id),
+FOREIGN KEY(customer_id) REFERENCES bms_customer(c_id)
+)
