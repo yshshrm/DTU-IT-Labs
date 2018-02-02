@@ -1,0 +1,24 @@
+CREATE TABLE bms_customer (
+c_id INT PRIMARY KEY, 
+name CHAR(30) NOT NULL, 
+phone INT UNIQUE, 
+country VARCHAR(20) DEFAULT 'INDIA', 
+email VARCHAR(20), 
+age INT CHECK(age > 12)
+)
+
+INSERT INTO bms_customer values(10001, 'Yash', 999999999, 'India', 'yash@gmail.com', 18)
+INSERT INTO bms_customer values(1000, 'xyz', 999999999, 'India', 'y@gmail.com', 18)
+
+SELECT name FROM bms_customer WHERE age BETWEEN 16 AND 21
+SELECT * FROM bms_customer WHERE name = 'Yash'
+SELECT * FROM bms_customer WHERE name LIKE 'Y%'
+SELECT * FROM bms_customer WHERE name LIKE '_ash'
+SELECT DISTINCT country FROM bms_customer
+SELECT * FROM bms_customer WHERE name NOT LIKE 'Y%'
+
+----------------------------
+
+ALTER TABLE bms_customer ADD gender VARCHAR(10)
+
+INSERT INTO bms_customer values(10002, 'Vibhor', 999999998, 'India', 'v@gmail.com', 16, 'male')
