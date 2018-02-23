@@ -20,5 +20,10 @@ SELECT * FROM bms_customer WHERE name NOT LIKE 'Y%'
 ----------------------------
 
 ALTER TABLE bms_customer ADD gender VARCHAR(10)
+ALTER TABLE bms_customer MODIFY gender INT
+ALTER TABLE bms_customer DROP COLUMN gender
+ALTER TABLE bms_customer DROP PRIMARY KEY
+ALTER TABLE bms_customer ADD PRIMARY KEY (email)
+ALTER TABLE bms_customer RENAME COLUMN age to c_age
 
 INSERT INTO bms_customer values(10002, 'Vibhor', 999999998, 'India', 'v@gmail.com', 16, 'male')
