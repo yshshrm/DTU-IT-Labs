@@ -42,3 +42,13 @@ INSERT INTO bms_movie VALUES(1, 'Lord of the Rings', 'Best movie ever', 5)
 SELECT * FROM bms_movie
 
 INSERT INTO bms_movie(b_id, movie_id, hall_id, customer_id, seats) VALUES(1, 1, 2001, 10001, 100)
+
+-------------------------
+
+select c.name, b.seats from bms_customer c, bms_booking b where c.name = 'Yash'
+select c.name, h.location from bms_customer c, bms_hall h 
+
+create table bms_hall_room (hall_id int references bms_hall(h_id) on delete cascade, hall_no int NOT NULL)
+insert into bms_hall_room values(2001, 1)
+insert into bms_hall_room values(2001, 1)
+delete from bms_hall where h_id = 2001
