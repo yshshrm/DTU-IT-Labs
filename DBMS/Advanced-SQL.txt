@@ -16,6 +16,8 @@ BEGIN
 INSERT INTO bms_movie_backup VALUES(:old.m_id, :old.rating);
 END;
 
+UPDATE bms_movie SET rating = 3 WHERE m_id = 3
+
 --------------------------------------------------------------
 
 CREATE OR REPLACE VIEW bms_top_rated_movies AS 
