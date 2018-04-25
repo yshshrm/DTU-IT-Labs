@@ -1,0 +1,40 @@
+CREATE SEQUENCE s START WITH 1 INCREMENT BY 2 MAXVALUE 99 CYCLE
+INSERT INTO bms_hall  VALUES (s.NEXTVAL, 'Shalimar Bagh', 110085, 350)
+INSERT INTO bms_hall  VALUES (s.NEXTVAL, 'Rohini', 110085, 600)
+SELECT * from bms_hall 
+
+CREATE INDEX i ON bms_hall(location)
+
+-------------------------------------------------------------
+
+CREATE TABLE bms_movie_backup(m_id int, foreign key(m_id) references bms_movie(m_id), rating int)
+
+CREATE OR REPLACE TRIGGER t 
+BEFORE UPDATE OF rating ON bms_movie 
+FOR EACH ROW 
+BEGIN 
+INSERT INTO bms_movie_backup VALUES(:old.m_id, :old.rating);
+END;
+
+--------------------------------------------------------------
+
+CREATE OR REPLACE VIEW bms_top_rated_movies AS 
+SELECT m_id, movie, rating FROM bms_movie 
+WHERE rating > 3
+
+SELECT * FROM bms_top_rated_movies
+
+INSERT INTO bms_top_rated_movies VALUES(2, 'The Godfather', 5)
+
+CREATE OR REPLACE VIEW bms_cinema AS 
+SELECT h_id, location FROM bms_hall
+
+SELECT v1.movie, v2.location FROM bms_top_rated_movies v1, bms_cinema v2
+
+UPDATE bms_top_rated_movies SET rating = 4 WHERE m_id = 2
+
+DELETE bms_top_rated_movies WHERE m_id = 2
+
+DROP VIEW bms_top_rated_movies
+
+--------------------------------------------------------------
